@@ -27,26 +27,33 @@ public class ContactList {
     }
 
     public void giveMeRecordByName(String input) throws ContactException{
+        boolean isIn = false;
         for (Contact contact : listOfContacts) {
             if (contact.getLastName() == null) {
                 if (contact.getFirstName().equals(input)) {
+                    isIn = true;
                     System.out.println(contact.getAll());
                 }
             } else if (contact.getFirstName().equals(input) || contact.getLastName().equals(input)) {
+                isIn = true;
                 System.out.println(contact.getAll());
-            } else {
-                throw new ContactException("Zadané jméno či příjmení neodpovídá žádnému kontaktu!");
             }
+        }
+        if (!isIn) {
+            throw new ContactException("Zadané jméno či příjmení se mezi kontakty nenachází!");
         }
     }
 
     public void giveMeRecordByPartOfTel(String input) throws ContactException {
+        boolean isIn = false;
         for (Contact contact : listOfContacts) {
             if (contact.getTelNum().contains(input)) {
+                isIn = true;
                 System.out.println(contact.getAll());
-            } else {
-                throw new ContactException("Zadaná část tel. čísla neodpovídá žádnému kontaktu!");
             }
+        }
+        if (!isIn) {
+            throw new ContactException("Část tel. čísla se v žádném kontaktu nenachází!");
         }
     }
 }
