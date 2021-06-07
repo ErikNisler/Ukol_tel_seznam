@@ -45,6 +45,7 @@ public class ContactList {
     }
 
     public void giveMeRecordByPartOfTel(String input) throws ContactException {
+
         boolean isIn = false;
         for (Contact contact : listOfContacts) {
             if (contact.getTelNum().contains(input)) {
